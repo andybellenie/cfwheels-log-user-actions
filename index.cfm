@@ -1,15 +1,18 @@
-<h1>'Log User Actions' Plugin for CF Wheels</h1>
-<h4>Version 0.3 BETA <br>
-By Andy Bellenie</h4>
-<p>
-This plugin allows the automatic completion of user logging fields during create, update and delete actions.<br>
-<br> 
-To enable this plugin you need to include one or more of the following settings in config/settings.cfm <br>
-&lt;cfset set(logUserOnCreateProperty=&quot;{created by column name}&quot;)&gt;<br>
-&lt;cfset set(logUserOnUpdateProperty=&quot;{updated by column name}&quot;)&gt;<br>
-&lt;cfset set(logUserOnDeleteProperty=&quot;{deleted by column name}&quot;)&gt;</p>
-<p>NOTE: You must have soft deletion enabled to log delete events. For more information on soft deletion, please refer to the Wheels <a href="http://cfwheels.org/docs" target="_blank">documentation</a>. </p>
-<p>The default user identifier to log is 'session.userId' which must exist for logging to work. If you wish to change this, also set the following:<br>
-&lt;cfset set(userIdLocation=&quot;{user id variable (in any scope)} &quot;)&gt;</p>
-<p>For questions, errors or suggestions please email <a href="mailto:andybellenie@gmail.com">andybellenie@gmail.com</a></p>
-<p>&nbsp; </p>
+<h1>Log User Actions 1.1</h1>
+<h3>A plugin for <a href="http://cfwheels.org" target="_blank">Coldfusion on Wheels</a> by <a href="http://cfwheels.org/user/profile/24" target="_blank">Andy Bellenie</a></h3>
+<p>This plugin allows the automatic completion of user logging fields during insertions, updates and deletes.</p>
+<h2>Usage</h2>
+<p>Add  logUserActions(userIdLocation[, createProperty, updateProperty, deleteProperty]) to the init of your model to enable the plugin.</p>
+<ul>
+	<li>userIdLocation (string, required) - the literal name of a variable containing the value you want to store as a user Id, e.g. &quot;session.userId&quot; (not the value itself!)</li>
+	<li>createProperty (string, default 'createdBy') - the name of the column you would like to use for logging creates</li>
+	<li>updateProperty (string, default 'updatedBy') - the name of the column you would like to use for logging updates</li>
+	<li>deleteProperty (string, default 'deletedBy') - the name of the column you would like to use for logging deletes</li>
+</ul>
+<pre>
+&lt;cffunction name=&quot;init&quot;&gt;
+	&lt;cfset logUserActions(userIdLocation=&quot;session.userId&quot;)&gt;
+&lt;/cffunction&gt;</pre>
+<h2>Support</h2>
+<p>I try to keep my plugins free from bugs and up to date with Wheels releases, but if you encounter a problem please log an issue using the tracker on github, where you can also browse my other plugins.<br />
+<a href="https://github.com/andybellenie" target="_blank">https://github.com/andybellenie</a></p>
